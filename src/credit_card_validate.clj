@@ -6,3 +6,12 @@
 (def doubleEveryOther(fn [digitList]
 		(reverse (map * (reverse digitList) (cycle [1 2])))
 	))
+
+(def sumDigits(fn [integerList]
+	(reduce + (map (comp (partial reduce +) (partial toDigits)) integerList))
+		))
+
+(def validate(fn[inputNumber]
+	( == (rem (sumDigits (doubleEveryOther (toDigits inputNumber))) 10) 0)
+	))
+
